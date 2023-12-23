@@ -26,4 +26,5 @@ dist-ssr
 
 #files
 conf.js
+#Env Variables
 .env

@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 async function summarizeText(text) {
     let data = JSON.stringify({
-        "inputs":text,
+        "inputs": text,
         "parameters": {
-            "max_length": 100,
+            "max_length": 1000,
             "min_length": 30
         }
     });
@@ -21,17 +21,12 @@ async function summarizeText(text) {
         data: data
     };
 
-    async function makeRequest() {
-        try {
-            const summarizedText = await axios.request(config);
-            console.log(summarizedText.data[0].summary_text);
-            return summarizedText.data[0].summary_text;
-        }
-        catch (error) {
-            console.log(error);
-        }
+    try {
+        const summarizedText = await axios.request(config);
+        return summarizedText.data[0].summary_text;
     }
-
-    makeRequest();
+    catch (error) {
+        console.log(error);
+    }
 }
 export default summarizeText;
